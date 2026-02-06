@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>.NET Web Library - Pomoc / Help</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e1e1e 0%, #2b2b2b 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #2b2b2b;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #0078d4 0%, #005a9e 100%);
+            padding: 30px;
+            text-align: center;
+            border-bottom: 3px solid #0078d4;
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .language-toggle {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .language-toggle button {
+            background: #0078d4;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            margin: 0 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .language-toggle button:hover {
+            background: #005a9e;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 120, 212, 0.3);
+        }
+        
+        .language-toggle button.active {
+            background: #005a9e;
+            box-shadow: 0 0 0 3px rgba(0, 120, 212, 0.3);
+        }
+        
+        .lang-section {
+            display: none;
+        }
+        
+        .lang-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        h2 {
+            color: #0078d4;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3c3c3c;
+            font-size: 24px;
+        }
+        
+        h3 {
+            color: #4a9eff;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #333333;
+            border-radius: 8px;
+            border-left: 4px solid #0078d4;
+        }
+        
+        .highlight {
+            background: #404040;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 3px solid #0078d4;
+            margin: 15px 0;
+        }
+        
+        .warning {
+            background: #3d2200;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 3px solid #ff9800;
+            margin: 15px 0;
+        }
+        
+        .warning::before {
+            content: "⚠️ ";
+            font-size: 18px;
+        }
+        
+        .success {
+            background: #003d00;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 3px solid #4caf50;
+            margin: 15px 0;
+        }
+        
+        .success::before {
+            content: "✅ ";
+            font-size: 18px;
+        }
+        
+        ul, ol {
+            margin-left: 25px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        code {
+            background: #1e1e1e;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #4ec9b0;
+            font-size: 14px;
+        }
+        
+        .file-structure {
+            background: #1e1e1e;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+        
+        .footer {
+            background: #1e1e1e;
+            padding: 20px;
+            text-align: center;
+            border-top: 2px solid #3c3c3c;
+            font-size: 14px;
+            color: #888888;
+        }
+        
+        .footer a {
+            color: #0078d4;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        strong {
+            color: #4a9eff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📖 .NET Web Library 2.0</h1>
+            <p>Instalator i Aktualizator | Installer and Updater</p>
+        </div>
+        
+        <div class="content">
+            <div class="language-toggle">
+                <button onclick="switchLanguage('pl')" id="btn-pl" class="active">🇵🇱 Polski</button>
+                <button onclick="switchLanguage('en')" id="btn-en">🇬🇧 English</button>
+            </div>
+            
+            <!-- POLISH VERSION -->
+            <div id="lang-pl" class="lang-section active">
+                <div class="section">
+                    <h2>📋 Opis Aplikacji</h2>
+                    <p><strong>.NET Web Library 2.0</strong> to zaawansowane narzędzie do zarządzania instalacjami środowisk .NET Runtime w różnych wersjach. Aplikacja oferuje prosty i intuicyjny interfejs graficzny, który umożliwia łatwą instalację i aktualizację wszystkich dostępnych wersji .NET.</p>
+                </div>
+                
+                <div class="section">
+                    <h2>⚙️ Wymagania Systemowe</h2>
+                    
+                    <h3>Minimalne wymagania:</h3>
+                    <ul>
+                        <li><strong>System operacyjny:</strong> Windows 10 lub nowszy</li>
+                        <li><strong>Architektura:</strong> 64-bit (x64)</li>
+                        <li><strong>RAM:</strong> 2 GB (zalecane 4 GB lub więcej)</li>
+                        <li><strong>Miejsce na dysku:</strong> 500 MB wolnego miejsca</li>
+                    </ul>
+                    
+                    <h3>🔧 Wymagane komponenty:</h3>
+                    <div class="warning">
+                        <strong>WAŻNE:</strong> W katalogu głównym aplikacji (tym samym folderze co plik .exe) MUSI znajdować się plik <code>winget.exe</code>!
+                    </div>
+                    
+                    <div class="highlight">
+                        <p><strong>Co to jest winget.exe?</strong></p>
+                        <p>Winget (Windows Package Manager) to oficjalny menedżer pakietów Microsoft dla systemu Windows. Aplikacja używa tego narzędzia do instalacji i aktualizacji pakietów .NET.</p>
+                    </div>
+                    
+                    <h3>📁 Struktura katalogów:</h3>
+                    <div class="file-structure">
+📂 Twoja_Aplikacja/
+├── 📄 DotNetInstaller.exe     (główny plik aplikacji)
+├── 📄 winget.exe               (WYMAGANE!)
+├── 📄 icon.ico                 (ikona aplikacji)
+├── 📄 Help.html                (plik pomocy)
+└── 📄 windows_config.txt       (konfiguracja okien - tworzona automatycznie)
+                    </div>
+                    
+                    <div class="success">
+                        Jeśli nie posiadasz pliku <code>winget.exe</code>, możesz pobrać go ze strony:<br>
+                        <a href="https://github.com/microsoft/winget-cli/releases" target="_blank" style="color: #4caf50;">https://github.com/microsoft/winget-cli/releases</a>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h2>🚀 Jak Używać Aplikacji</h2>
+                    
+                    <h3>1. Instalacja pakietu .NET:</h3>
+                    <ol>
+                        <li>Wybierz żądaną wersję .NET z listy dostępnych pakietów</li>
+                        <li>Kliknij przycisk <strong>"Instaluj/Aktualizuj"</strong></li>
+                        <li>Poczekaj na zakończenie procesu instalacji</li>
+                        <li>Otrzymasz powiadomienie o sukcesie lub ewentualnych błędach</li>
+                    </ol>
+                    
+                    <h3>2. Dostosowanie rozmiaru okien:</h3>
+                    <div class="success">
+                        <strong>Nowa funkcja!</strong> Wszystkie okna aplikacji zapamiętują swój rozmiar!
+                    </div>
+                    <ul>
+                        <li><strong>Główne okno:</strong> Przeciągnij brzegi lub rogi aby zmienić rozmiar</li>
+                        <li><strong>Okno "O programie":</strong> Również można dowolnie skalować</li>
+                        <li><strong>Automatyczny zapis:</strong> Rozmiary są zapisywane w pliku <code>windows_config.txt</code></li>
+                        <li><strong>Przywracanie:</strong> Przy następnym uruchomieniu okna otworzą się w ostatnio używanym rozmiarze</li>
+                    </ul>
+                    
+                    <h3>3. Dostępne wersje .NET:</h3>
+                    <ul>
+                        <li>.NET Desktop Runtime 6.0.x</li>
+                        <li>.NET Desktop Runtime 7.0.x</li>
+                        <li>.NET Desktop Runtime 8.0.x</li>
+                        <li>.NET Desktop Runtime 9.0.x</li>
+                        <li>.NET Runtime 6.0.x</li>
+                        <li>.NET Runtime 7.0.x</li>
+                        <li>.NET Runtime 8.0.x</li>
+                        <li>.NET Runtime 9.0.x</li>
+                    </ul>
+                    
+                    <h3>3. Dodatkowe funkcje:</h3>
+                    <ul>
+                        <li><strong>🌐 Microsoft .NET:</strong> Otwiera stronę Microsoft .NET w przeglądarce</li>
+                        <li><strong>PowerShell Script:</strong> Uruchamia skrypt PowerShell do instalacji .NET</li>
+                        <li><strong>Bash Script:</strong> Uruchamia skrypt Bash do instalacji .NET (Linux/macOS)</li>
+                        <li><strong>📖 Pomoc:</strong> Otwiera ten plik pomocy</li>
+                        <li><strong>ℹ️ O programie:</strong> Wyświetla informacje o aplikacji i autorze</li>
+                        <li><strong>🌐 Język:</strong> Przełącza między językiem polskim a angielskim</li>
+                    </ul>
+                </div>
+                
+                <div class="section">
+                    <h2>❗ Rozwiązywanie Problemów</h2>
+                    
+                    <h3>Problem: "Nie można znaleźć winget.exe"</h3>
+                    <div class="warning">
+                        <strong>Rozwiązanie:</strong> Upewnij się, że plik <code>winget.exe</code> znajduje się w tym samym katalogu co aplikacja DotNetInstaller.exe
+                    </div>
+                    
+                    <h3>Problem: "Błąd instalacji pakietu"</h3>
+                    <ul>
+                        <li>Sprawdź połączenie z internetem</li>
+                        <li>Uruchom aplikację jako administrator</li>
+                        <li>Sprawdź, czy masz wystarczająco miejsca na dysku</li>
+                    </ul>
+                    
+                    <h3>Problem: "Aplikacja nie uruchamia się"</h3>
+                    <ul>
+                        <li>Sprawdź, czy masz zainstalowane wszystkie wymagane komponenty Windows</li>
+                        <li>Spróbuj uruchomić aplikację jako administrator</li>
+                        <li>Sprawdź logi systemowe Windows pod kątem błędów</li>
+                    </ul>
+                </div>
+                
+                <div class="section">
+                    <h2>📞 Kontakt i Wsparcie</h2>
+                    <p><strong>Autor:</strong> Sebastian Januchowski</p>
+                    <p><strong>Organizacja:</strong> polsoft.ITS London</p>
+                    <p><strong>Email:</strong> <a href="mailto:polsoft.its@fastservice.com">polsoft.its@fastservice.com</a></p>
+                    <p><strong>GitHub:</strong> <a href="https://github.com/seb07uk" target="_blank">github.com/seb07uk</a></p>
+                </div>
+            </div>
+            
+            <!-- ENGLISH VERSION -->
+            <div id="lang-en" class="lang-section">
+                <div class="section">
+                    <h2>📋 Application Description</h2>
+                    <p><strong>.NET Web Library 2.0</strong> is an advanced tool for managing .NET Runtime environment installations across different versions. The application offers a simple and intuitive graphical interface that enables easy installation and updating of all available .NET versions.</p>
+                </div>
+                
+                <div class="section">
+                    <h2>⚙️ System Requirements</h2>
+                    
+                    <h3>Minimum requirements:</h3>
+                    <ul>
+                        <li><strong>Operating System:</strong> Windows 10 or newer</li>
+                        <li><strong>Architecture:</strong> 64-bit (x64)</li>
+                        <li><strong>RAM:</strong> 2 GB (recommended 4 GB or more)</li>
+                        <li><strong>Disk Space:</strong> 500 MB free space</li>
+                    </ul>
+                    
+                    <h3>🔧 Required Components:</h3>
+                    <div class="warning">
+                        <strong>IMPORTANT:</strong> The <code>winget.exe</code> file MUST be located in the application's root directory (same folder as the .exe file)!
+                    </div>
+                    
+                    <div class="highlight">
+                        <p><strong>What is winget.exe?</strong></p>
+                        <p>Winget (Windows Package Manager) is Microsoft's official package manager for Windows. The application uses this tool to install and update .NET packages.</p>
+                    </div>
+                    
+                    <h3>📁 Directory Structure:</h3>
+                    <div class="file-structure">
+📂 Your_Application/
+├── 📄 DotNetInstaller.exe     (main application file)
+├── 📄 winget.exe               (REQUIRED!)
+├── 📄 icon.ico                 (application icon)
+├── 📄 Help.html                (help file)
+└── 📄 windows_config.txt       (window configurations - created automatically)
+                    </div>
+                    
+                    <div class="success">
+                        If you don't have the <code>winget.exe</code> file, you can download it from:<br>
+                        <a href="https://github.com/microsoft/winget-cli/releases" target="_blank" style="color: #4caf50;">https://github.com/microsoft/winget-cli/releases</a>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h2>🚀 How to Use the Application</h2>
+                    
+                    <h3>1. Installing a .NET package:</h3>
+                    <ol>
+                        <li>Select the desired .NET version from the list of available packages</li>
+                        <li>Click the <strong>"Install/Update"</strong> button</li>
+                        <li>Wait for the installation process to complete</li>
+                        <li>You will receive a notification about success or any errors</li>
+                    </ol>
+                    
+                    <h3>2. Window size customization:</h3>
+                    <div class="success">
+                        <strong>New feature!</strong> All application windows remember their size!
+                    </div>
+                    <ul>
+                        <li><strong>Main window:</strong> Drag edges or corners to resize</li>
+                        <li><strong>"About" window:</strong> Also freely resizable</li>
+                        <li><strong>Automatic saving:</strong> Sizes are saved in <code>windows_config.txt</code> file</li>
+                        <li><strong>Restoration:</strong> On next launch, windows open in the last used size</li>
+                    </ul>
+                    
+                    <h3>3. Available .NET versions:</h3>
+                    <ul>
+                        <li>.NET Desktop Runtime 6.0.x</li>
+                        <li>.NET Desktop Runtime 7.0.x</li>
+                        <li>.NET Desktop Runtime 8.0.x</li>
+                        <li>.NET Desktop Runtime 9.0.x</li>
+                        <li>.NET Runtime 6.0.x</li>
+                        <li>.NET Runtime 7.0.x</li>
+                        <li>.NET Runtime 8.0.x</li>
+                        <li>.NET Runtime 9.0.x</li>
+                    </ul>
+                    
+                    <h3>3. Additional features:</h3>
+                    <ul>
+                        <li><strong>🌐 Microsoft .NET:</strong> Opens the Microsoft .NET page in your browser</li>
+                        <li><strong>PowerShell Script:</strong> Runs a PowerShell script to install .NET</li>
+                        <li><strong>Bash Script:</strong> Runs a Bash script to install .NET (Linux/macOS)</li>
+                        <li><strong>📖 Help:</strong> Opens this help file</li>
+                        <li><strong>ℹ️ About:</strong> Displays information about the application and author</li>
+                        <li><strong>🌐 Language:</strong> Switches between Polish and English</li>
+                    </ul>
+                </div>
+                
+                <div class="section">
+                    <h2>❗ Troubleshooting</h2>
+                    
+                    <h3>Problem: "Cannot find winget.exe"</h3>
+                    <div class="warning">
+                        <strong>Solution:</strong> Make sure the <code>winget.exe</code> file is located in the same directory as the DotNetInstaller.exe application
+                    </div>
+                    
+                    <h3>Problem: "Package installation error"</h3>
+                    <ul>
+                        <li>Check your internet connection</li>
+                        <li>Run the application as administrator</li>
+                        <li>Check if you have enough disk space</li>
+                    </ul>
+                    
+                    <h3>Problem: "Application won't start"</h3>
+                    <ul>
+                        <li>Check if you have all required Windows components installed</li>
+                        <li>Try running the application as administrator</li>
+                        <li>Check Windows system logs for errors</li>
+                    </ul>
+                </div>
+                
+                <div class="section">
+                    <h2>📞 Contact and Support</h2>
+                    <p><strong>Author:</strong> Sebastian Januchowski</p>
+                    <p><strong>Organization:</strong> polsoft.ITS London</p>
+                    <p><strong>Email:</strong> <a href="mailto:polsoft.its@fastservice.com">polsoft.its@fastservice.com</a></p>
+                    <p><strong>GitHub:</strong> <a href="https://github.com/seb07uk" target="_blank">github.com/seb07uk</a></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 polsoft.ITS™ | Version 2.0</p>
+            <p>Created with ❤️ by Sebastian Januchowski</p>
+        </div>
+    </div>
+    
+    <script>
+        function switchLanguage(lang) {
+            // Hide all language sections
+            document.querySelectorAll('.lang-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.language-toggle button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected language section
+            document.getElementById('lang-' + lang).classList.add('active');
+            
+            // Add active class to selected button
+            document.getElementById('btn-' + lang).classList.add('active');
+        }
+    </script>
+</body>
+</html>

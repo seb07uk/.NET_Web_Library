@@ -1,0 +1,6 @@
+# .NET Web Library 2.0 - Window Configurations
+# Format: window_name=widthxheight+x+y (or widthxheight)
+# Auto-generated - modifications will be preserved
+
+about_window=400x541
+main_window=700x600+387+0
