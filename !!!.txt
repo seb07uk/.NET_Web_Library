@@ -1,4 +1,0 @@
-usun tworzenie i wczytywanie rozmiarow oknz z pliku windows_config, ustaw stale wymiary aplikacji na main_window=700x600+160+48 i about_window=400x541 i zapisz je w kodzie glownym bez mozliwosci zmiany rozmiaru okien myszka
-
-
-pobierz wszystkie niezbedne biblioteki aby ta aplikacja byla samodzielna standalone i zintegryj je z aplikacja, przygotuj plik py_to_exe.bat z icon.ico i version.txt

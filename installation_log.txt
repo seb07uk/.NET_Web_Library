@@ -53,3 +53,9 @@
 [2026-02-06 00:09:59] [INFO] Main window size saved: 700x600+387+0
 [2026-02-06 00:09:59] [INFO] Application closed
 [2026-02-06 00:09:59] [INFO] ==================================================
+[2026-02-07 12:38:42] [INFO] Application started
+[2026-02-07 12:38:42] [INFO] Main window size: 700x600+387+0
+[2026-02-07 12:38:43] [INFO] Main window size saved: 700x600+387+0
+[2026-02-07 12:38:45] [INFO] Main window size saved: 700x600+387+0
+[2026-02-07 12:38:45] [INFO] Application closed
+[2026-02-07 12:38:45] [INFO] ==================================================
